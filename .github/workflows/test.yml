@@ -1,0 +1,37 @@
+name: Test Precogs Action
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test-free-tier:
+    name: Test Free Tier (secrets + deps)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Precogs Security Scan (free tier)
+        id: scan
+        uses: ./
+        with:
+          scan-code: 'false'
+          fail-on-findings: 'false'
+
+      - name: Print results
+        run: |
+          echo "Total findings: ${{ steps.scan.outputs.findings-count }}"
+          echo "Critical: ${{ steps.scan.outputs.critical-count }}"
+          echo "High: ${{ steps.scan.outputs.high-count }}"
+          echo "Secrets: ${{ steps.scan.outputs.secrets-count }}"
+
+      - name: Verify findings detected
+        run: |
+          if [ "${{ steps.scan.outputs.findings-count }}" -eq "0" ]; then
+            echo "❌ FAIL: Expected findings but got 0"
+            exit 1
+          fi
+          echo "✅ PASS: Detected ${{ steps.scan.outputs.findings-count }} findings"

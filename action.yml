@@ -1,5 +1,5 @@
 name: 'Precogs Security Scan'
-description: 'AI-powered security scanner — finds vulnerabilities, secrets, PII, and insecure dependencies in your code. Free secret scanning included.'
+description: 'AI security scanner — finds vulnerabilities, secrets, PII & insecure dependencies. Free tier included.'
 author: 'Precogs AI'
 
 branding:

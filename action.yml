@@ -1,0 +1,55 @@
+name: 'Precogs Security Scan'
+description: 'AI-powered security scanner — finds vulnerabilities, secrets, PII, and insecure dependencies in your code. Free secret scanning included.'
+author: 'Precogs AI'
+
+branding:
+  icon: 'shield'
+  color: 'purple'
+
+inputs:
+  api-key:
+    description: 'Precogs API key (from app.precogs.ai). Required for SAST and dependency scanning. Secret scanning works without it.'
+    required: false
+    default: ''
+  severity-threshold:
+    description: 'Minimum severity to fail the check: low, medium, high, critical'
+    required: false
+    default: 'high'
+  scan-secrets:
+    description: 'Enable free secret/PII scanning (regex + entropy, runs locally)'
+    required: false
+    default: 'true'
+  scan-code:
+    description: 'Enable AI code scan (SAST) — requires api-key'
+    required: false
+    default: 'true'
+  scan-dependencies:
+    description: 'Enable dependency vulnerability scan (SCA) — requires api-key'
+    required: false
+    default: 'true'
+  fail-on-findings:
+    description: 'Fail the workflow if findings meet severity threshold'
+    required: false
+    default: 'true'
+  sarif-output:
+    description: 'Path to write SARIF output file (for GitHub Code Scanning integration)'
+    required: false
+    default: ''
+
+outputs:
+  findings-count:
+    description: 'Total number of findings'
+  critical-count:
+    description: 'Number of critical findings'
+  high-count:
+    description: 'Number of high findings'
+  secrets-count:
+    description: 'Number of secrets/PII found'
+  report-url:
+    description: 'URL to full report on app.precogs.ai'
+  sarif-file:
+    description: 'Path to generated SARIF file'
+
+runs:
+  using: 'node20'
+  main: 'src/index.js'

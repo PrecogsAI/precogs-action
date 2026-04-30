@@ -4,7 +4,7 @@ AI-powered security scanner that finds vulnerabilities, secrets, PII, and insecu
 
 **Free secret + dependency scanning included** — no API key required.
 
-[![GitHub Marketplace](https://img.shields.io/badge/Marketplace-Precogs%20Security%20Scan-purple?style=for-the-badge&logo=github)](https://github.com/marketplace/actions/precogs-security-scan)
+[![GitHub Marketplace](https://img.shields.io/badge/Marketplace-Precogs%20AI%20Security%20Scan-purple?style=for-the-badge&logo=github)](https://github.com/marketplace/actions/precogs-ai-security-scan)
 
 ---
 
